@@ -15,15 +15,15 @@ public class Order {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer orderId;
-	 @Column(nullable = false)
-	private Integer  customerId;
-	 @Column(nullable = false)
+	@Column(nullable = false)
+	private Integer customerId;
+	@Column(nullable = false)
 	private Integer restaurantId;
-    @Column(nullable = true)
-	private Integer  deliveryPartnerId;
+	@Column(nullable = true)
+	private Integer deliveryPartnerId;
 
 	private List<String> menuItems;
-	
+
 	private String orderStatus;
 
 	public Integer getOrderId() {
@@ -88,8 +88,5 @@ public class Order {
 	public Order() {
 		super();
 	}
-
-	
-	
 
 }

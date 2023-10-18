@@ -17,7 +17,7 @@ public class DeliveryPartner {
 	private Integer deliveryPartnerId;
 	
 	@Column(name = "DP_name")
-	private String name;
+	private String name; 
 	
 	@Column(name = "DP_PhoneNo")
 	@Pattern(regexp = "[6-9][0-9]{9}" , flags = Flag.CASE_INSENSITIVE)
