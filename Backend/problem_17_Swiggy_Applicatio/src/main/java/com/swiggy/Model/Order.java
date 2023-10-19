@@ -8,6 +8,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "order_table")
@@ -16,8 +17,10 @@ public class Order {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer orderId;
 	@Column(nullable = false)
+	@NotNull(message = "customer Id not be null")
 	private Integer customerId;
 	@Column(nullable = false)
+	@NotNull(message = "restaurantId not be null")
 	private Integer restaurantId;
 	@Column(nullable = true)
 	private Integer deliveryPartnerId;
@@ -29,7 +32,7 @@ public class Order {
 	public Integer getOrderId() {
 		return orderId;
 	}
-
+ 
 	public void setOrderId(Integer orderId) {
 		this.orderId = orderId;
 	}

@@ -19,7 +19,7 @@ public class Customer {
 	private String name;
 
 	@Column(name = "customer_email")
-	@Pattern(regexp = "^[A-Za-z0-9+_.-]+@(.+)$")
+	@Pattern(regexp = "^[A-Za-z0-9+_.-]+@gmail.com")
 	private String email;
 
 	@Column(name = "customer_address")

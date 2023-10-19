@@ -1,0 +1,56 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body bgcolor="lightpink" onload="f1()">
+       <h1>Employee Details</h1>
+       <table>
+        <thead>
+            <tr>
+                <th>orderId</th>
+                <th>customerId</th>
+                <th>restaurantId</th>
+                <th>deliveryPartnerId</th>
+              
+                <th>menuItems</th>
+                <th>orderStatus</th>
+            </tr>
+        </thead>
+        <tbody id="Empbody"></tbody>
+       </table>
+</body>
+
+<script>
+    function f1(){
+        let empBody = document.getElementById("Empbody");
+
+        fetch("http://localhost:8080/orders").then(res => {
+       
+       if(res.status==201 | res.status==200){
+           res.json().then(data =>  {
+              data.forEach(emp => {
+              let row =  document.createElement("tr")
+              console.log(emp)
+              row.innerHTML=`
+              <td> ${emp.orderId}</td>
+              <td> ${emp.customerId}</td>
+              <td> ${emp.restaurantId}</td>
+              <td> ${emp.deliveryPartnerId}</td>
+              <td> ${emp.menuItems}</td>
+              <td> ${emp.orderStatus}</td>
+              `;
+              empBody.appendChild(row);
+              })
+      
+           })
+       }
+       else{
+           res.json().then(data => alert("invalid data"))
+       }
+   })
+        
+    }
+</script>
+</html>

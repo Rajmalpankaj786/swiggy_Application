@@ -2,19 +2,24 @@ package com.swiggy.service;
 
 import java.util.List;
 import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import com.swiggy.Exception.NotFoundException;
+import com.swiggy.Model.DeliveryPartner;
 import com.swiggy.Model.Order;
-
+import com.swiggy.Repositery.DeliveryPartnersRepo;
 import com.swiggy.Repositery.OrderRepo;
 
 @Service
 public class OrderService {
-
+	@Autowired
 	private OrderRepo orderRepo;
-	//private DeliveryPartnersRepo deliveryPartnersRepo;
-
-	
+	@Autowired
+	private DeliveryPartnersRepo deliveryPartnersRepo;
 
 	public OrderService(OrderRepo orderRepo) {
 		super();
@@ -40,21 +45,37 @@ public class OrderService {
 
 	}
 
-	public Order assignDeliveryPartner(Order order, Integer id) {
-//		Optional<DeliveryPartner> d1 = deliveryPartnersRepo.findById(id);
-//		if(d1.isPresent()) {
-//			d1.get();
-//			order.setDeliveryPartnerId(id);
-//		    orderRepo.save(order);
-//		    return order;
-//		}
-		// throw new NotFoundException("DeliveryPartner id : "+id+" not exist. ");
+	public Order assignDeliveryPartner(Integer orderId, Integer id) {
+		Optional<DeliveryPartner> d1 = deliveryPartnersRepo.findById(id);
+		Optional<Order> order = orderRepo.findById(orderId);
+		
+		if(order.isPresent()) {
+		Order o1 = 	order.get();
+			
+			if (d1.isPresent() ) {
+				o1.setDeliveryPartnerId(id);
+				o1.setOrderStatus("delivered");
+				orderRepo.save(o1);
+				return o1;
+			}
+			else {
+				throw new NotFoundException("DeliveryPartner id : " + id + " not exist. ");
+			}
+		}
 
-		order.setDeliveryPartnerId(id);
-		orderRepo.save(order);
-		order.setOrderStatus("delivered");
-		orderRepo.save(order);
-		return order;
+		throw new NotFoundException("order id : " + id + " not exist. ");
+
+
 	}
+	
+	public List<Order> getOrderPageWise(Integer pageNo , Integer recordPerPage){
+		Pageable pageable = PageRequest.of(pageNo, recordPerPage);
+		Page<Order> page = orderRepo.findAll(pageable);
+		if(page.hasContent()) {
+			return page.getContent();
+		}
+		throw new NotFoundException("No Records for the current page : " +pageNo);
+		
+		}
 
 }

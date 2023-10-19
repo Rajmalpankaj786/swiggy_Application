@@ -1,0 +1,51 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body bgcolor="lightpink" onload="f1()">
+       <h1>Employee Details</h1>
+       <table>
+        <thead>
+            <tr>
+                <th>restaurantId</th>
+                <th>name</th>
+                <th>email</th>
+                <th>address</th>
+            </tr>
+        </thead>
+        <tbody id="Empbody"></tbody>
+       </table>
+</body>
+
+<script>
+    function f1(){
+        let empBody = document.getElementById("Empbody");
+
+        fetch("http://localhost:8080/customers").then(res => {
+       
+       if(res.status==201 | res.status==200){
+           res.json().then(data =>  {
+              data.forEach(emp => {
+              let row =  document.createElement("tr")
+              console.log(emp)
+              row.innerHTML=`
+              <td> ${emp.customerId}</td>
+              <td> ${emp.name}</td>
+              <td> ${emp.email}</td>
+              <td> ${emp.address}</td>
+              `;
+              empBody.appendChild(row);
+              })
+      
+           })
+       }
+       else{
+           res.json().then(data => alert("invalid data"))
+       }
+   })
+        
+    }
+</script>
+</html>

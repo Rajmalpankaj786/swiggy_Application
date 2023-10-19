@@ -9,6 +9,7 @@ public class ErrorDetails {
 
 	public ErrorDetails() {
 	}
+	
 
 
 
