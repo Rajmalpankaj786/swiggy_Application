@@ -1,4 +1,6 @@
 # swiggy_Application
+# Swagger Ui Representation 
+(readmepng/swgger.png.png)
 Additional Features
 Pagination and Sorting: For GET APIs that may return a large amount of data, implement pagination to allow fetching the data in chunks rather than all at once. This can be done by adding query parameters to the API to indicate the page number and page size. Also, add sorting functionality so that the data can be ordered by specific fields. This can improve the user experience and efficiency of the application.
 Logging: Use a logging framework like Logback or SLF4J to record important events that occur during the execution of the application. This can include data-related operations, errors, or other significant occurrences. Logging is crucial for debugging and monitoring the application's health.
