@@ -32,7 +32,7 @@
           
             <input type="text" name="customerId" id="customerId" placeholder="Enter the customerId" ><br>
             <input type="text" name="restaurantId" id="restaurantId" placeholder="Enter the restaurantId"><br>
-            <input type="text" name="deliveryPartnerId" id="deliveryPartnerId" placeholder="Enter the deliveryPartnerId" ><br>
+            <!-- <input type="text" name="deliveryPartnerId" id="deliveryPartnerId" placeholder="Enter the deliveryPartnerId" ><br> -->
             <input type="text" name="menuItems" id="menuItems" placeholder="Enter the menuItems"><br>
             <input type="text" name="orderStatus" id="orderStatus" placeholder="Enter the orderStatus"><br>
             <input type="button" value="Register" onclick="registerCustomer()">
@@ -46,11 +46,11 @@
   
     var Eemail = document.getElementById("customerId").value;
     var Eposition = document.getElementById("restaurantId").value;
-    var Ea = document.getElementById("deliveryPartnerId").value;
+   // var Ea = document.getElementById("deliveryPartnerId").value;
     var Eb = document.getElementById("menuItems").value;
     var Ec = document.getElementById("orderStatus").value;
    
-    fetch("http://localhost:8080/orders" , {
+    fetch("http://localhost:8080/order/orders" , {
         method : "POST",
         headers : {
             "content-type" : "application/json"
@@ -59,7 +59,7 @@
             
             "customerId"   : Eemail,
             "restaurantId" : Eposition,
-            "deliveryPartnerId" : Ea,
+           // "deliveryPartnerId" : Ea,
             "menuItems"   : Eb,
             "orderStatus" : Ec
         }) 

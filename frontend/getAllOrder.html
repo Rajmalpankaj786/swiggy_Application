@@ -26,7 +26,7 @@
     function f1(){
         let empBody = document.getElementById("Empbody");
 
-        fetch("http://localhost:8080/orders").then(res => {
+        fetch("http://localhost:8080/order/orders").then(res => {
        
        if(res.status==201 | res.status==200){
            res.json().then(data =>  {
