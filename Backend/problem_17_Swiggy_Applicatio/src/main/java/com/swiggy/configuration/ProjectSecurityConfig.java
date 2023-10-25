@@ -37,13 +37,13 @@ public class ProjectSecurityConfig {
 					.authorities("admin")
 					.build();
 		
-		UserDetails user= User.withDefaultPasswordEncoder()
-				.username("user")
-				.password("1234")
-				.authorities("read")
-				.build();
+//		UserDetails user= User.withDefaultPasswordEncoder()
+//				.username("user")
+//				.password("1234")
+//				.authorities("read")
+//				.build();
 
-		return new InMemoryUserDetailsManager(admin,user);
+		return new InMemoryUserDetailsManager(admin);
 		
 	}
 }
