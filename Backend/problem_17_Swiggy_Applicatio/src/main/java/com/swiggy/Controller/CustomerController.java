@@ -38,7 +38,6 @@ public class CustomerController {
 	public ResponseEntity<List<Customer> > getCustomerPageWise(@PathVariable Integer pageNo , @PathVariable Integer recordPerPage){
 		return new ResponseEntity<List<Customer>>(customerService.getCustomerPageWise(pageNo, recordPerPage), HttpStatus.OK);
 	}
-	////////////////
-	//////
+	
 	
 }
